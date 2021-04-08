@@ -1,2 +1,0 @@
-# BolkTalk
-WebbShop

@@ -15,4 +15,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Pages\Admin\Content\Add - Copy.cshtml.cs">
+      <DependentUpon>Add.cshtml.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

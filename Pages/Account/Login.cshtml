@@ -1,0 +1,35 @@
+﻿@page "{value?}"
+@model BookTalk.Pages.Account.LoginModel
+@{
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-center">
+        <div class="formContainer">
+            <center>
+                <div class="formHeader">
+                    <i class="fas fa-user large-icon"></i>
+                </div>
+            </center>
+            <div class="formBody">
+                <form asp-page-handler="Login" method="post">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="user" placeholder="Enter your email or username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input name="rememberMe" type="checkbox" class="form-check-input">
+                        <label class="form-check-label checbox-large-label" for="exampleCheck1">Keep me signed in!</label>
+                    </div>
+                    <button type="submit" class="btn btn-orange">Login</button>
+
+                    <p style="color: red;">@ViewData["message"]</p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

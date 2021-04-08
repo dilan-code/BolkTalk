@@ -1,0 +1,243 @@
+﻿@inject NavigationService navService;
+@inject Context context;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookTalk</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+
+    @if (navService.NewUser())
+    { 
+    
+        
+    <div class="alert alert-danger" role="alert">
+        WE HAVE COOKIES!!!!!!!!
+    </div>
+    
+    }
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">BookTalk</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Store">Store</a>
+                        </li>
+
+                        @foreach (var nav in navService.GetMenu())
+                        {
+                            <li class="nav-item">
+                                <a href="/content/@nav.Title" class="nav-link text-dark">@nav.Title</a>
+                            </li>
+                        }
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/BookManager">BookManager</a>
+                        </li>
+                    </ul>
+
+                    @if(User.Identity.IsAuthenticated)
+                    { 
+
+                        <ul class="nav justify-content-end">
+
+                            <li class="nav-item">
+                                Hello, @User.Identity.Name
+                            </li>
+
+                        </ul>
+                    }
+
+                        <ul class="nav justify-content-end">
+
+
+
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle btn-account" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <h5>
+                                        <i class="fas fa-user-circle"></i>
+                                    </h5>
+                                </a>
+
+                                <div class="dropdown-menu menu-account">
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+
+                                        @if (User.IsInRole("Admin"))
+                                        {
+
+                                            <a class="dropdown-item" href="/admin/store">Store Manager</a>
+                                            <a class="dropdown-item" href="/admin/content">Content Manager</a>
+
+
+                                        }
+
+                                        <a class="dropdown-item" href="/account/register">Settings</a>
+                                        <a class="dropdown-item" href="/account/logout">Sign Out</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item" href="/account/register">Register</a>
+                                        <a class="dropdown-item" href="/account/login">Sign In</a>
+                                    }
+
+                                </div>
+
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <h5>
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span class="badge badge-secondary">@CustomerCart.GetCartCount()</span>
+                                    </h5>
+                                </a>
+
+                                <div class="dropdown-menu cartList">
+
+                                    @if (CustomerCart.GetCartCount() != 0)
+                                    {
+                                        <ul class="list-group ">
+
+
+
+                                            @{
+                                                double totalPrice = 0.0;
+
+                                            }
+
+
+                                            @foreach (var productId in CustomerCart.GetCart())
+                                            {
+                                                BookTalk.Data.Book book = new Data.Book();
+
+                                                book = context.Books.Where(x => x.Id.Equals(productId)).FirstOrDefault();
+
+                                                if (productId is not null)
+                                                {
+                                                    totalPrice += book.Price;
+
+                                                    <div class="card" id="@book.Id">
+
+                                                        <span class="card-body">
+
+                                                            <div class="row ">
+
+                                                                <div class="col-2">
+
+                                                                    <img src="@book.CoverUrl" class="img-fluid cartImage" alt="Cover" />
+
+                                                                </div>
+
+                                                                <div class="col-7">
+
+                                                                    <span class="cartTitle">@book.Title.Substring(0, (book.Title.Length < 30 ? book.Title.Length : 30))...</span>
+
+                                                                </div>
+
+                                                                <div class="col-2">
+
+                                                                    <span class="badge badge-warning badge-pill">
+
+                                                                        @book.Price SEK
+
+                                                                    </span>
+
+                                                                </div>
+
+                                                                <div class="col-1">
+
+
+                                                                    <a id="button_@book.Id" onclick="removeFromCart(this)">
+
+                                                                        <i class="fas fa-trash-alt"></i>
+
+                                                                    </a>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                    </div>
+
+                                                    <br />
+
+                                                }
+
+                                            }
+
+                                            @if (totalPrice != 0)
+                                            {
+
+                                                <div class="totalPriceLabel">
+                                                    <span>Total price: @totalPrice SEK</span>
+                                                </div>
+                                            }
+
+                                        </ul>
+                                    }
+                                    else
+                                    {
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                You have no products in your cart. Go buy something!
+                                            </div>
+                                        </div>
+
+                                    }
+
+                                </div>
+                            </li>
+                        </ul>
+
+
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - BookTalk - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
