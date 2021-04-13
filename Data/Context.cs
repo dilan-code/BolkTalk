@@ -13,6 +13,10 @@ public class Context : IdentityDbContext<User>
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<Content> Content { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<UserOrder> UserOrders { get; set; }
+
+
 
     public Context(DbContextOptions<Context> options)
         : base(options)
@@ -31,9 +35,13 @@ public class Context : IdentityDbContext<User>
         builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
         builder.Entity<IdentityRole>().ToTable("Roles");
 
+
+        string adminRoleId = "0a880cc1-659a-4635-be2a-eef833e2096a";
+        string customerRoleId = "46e8fe91-21d2-49bf-8607-bebd2c1d810a";
+
         builder.Entity<IdentityRole>().HasData(new IdentityRole
         {
-            Id = Guid.NewGuid().ToString(),
+            Id = adminRoleId,
             Name = "Admin",
             NormalizedName = "ADMIN"
 
@@ -41,7 +49,7 @@ public class Context : IdentityDbContext<User>
 
         builder.Entity<IdentityRole>().HasData(new IdentityRole
         {
-            Id = Guid.NewGuid().ToString(),
+            Id = customerRoleId,
             Name = "Customer",
             NormalizedName = "CUSTOMER"
 

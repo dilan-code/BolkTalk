@@ -5,20 +5,128 @@ for details on configuring this project to bundle and minify static web assets. 
 :root {
     --brightColor: #e5e5e5;
     --darkColor: #282828;
+    --blueColor: #007bff;
     --navBgColor: rgba(255,255,255,0.1);
     --formBgColor: rgba(219, 217, 208,1);
+    --greyColor: #BFBFBF;
+    --formBackground: #FFF;
+}
+html {
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    background-color: var(--lightColor);
+    color: var(--blueColor) !important;
+   
+}
+
+nav {
+    background-color: var(--deepDarkColor) !important;
+
+    position: absolute;
+    z-index: 9999;
+}
+
+nav a:hover {
+    
+    color: var(--brightColor) !important;
+    font-weight: 500;
+    transition: all 200ms ease-in-out;
+    margin-top: -5px;
+
+}
+
+nav a {
+    transition: all 200ms ease-in-out;
+    color: var(--) !important;
+}
+
+footer {
+    background-color: var(--greyColor) !important;
+    margin-top: 100px;
+}
+
+footer a {
+    color: var(--brightColor) !important;
+}
+
+
+.mainCategoryTitle {
+    font-size: 1.2rem !important;
+    font-weight: 400;
+    color: var(--greyColor) !important;
+}
+
+
+.subCategoryTitle {
+    color: var(--lightGreyColor) !important;
+}
+
+
+.productImageContainer {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 250px;
+    overflow: hidden !important;
+    opacity: 0.3;
+
+}
+
+
+.blur {
+    filter: blur(10px);
+}
+
+.mainImageContainer {
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 250px;
+
+    position: static;
+    z-index: 1;
+
+    margin-top: -250px;
+
+}
+
+.col-bottom-pad {
+    margin-bottom: 20px;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.dropdown-menu {
+    z-index: 99999999 !important;
+}
+
+
+.large-icon {
+    font-size: 3rem;
 }
 
 
 
+.CheckoutConsole {
+
+    text-align: right;
+    float: right;
+
+}
 
 .formContainer {
-
     height: 350px;
-
     margin-top: -175px;
     padding-top: 30%;
-
 }
 
 .formBody {
@@ -28,6 +136,8 @@ for details on configuring this project to bundle and minify static web assets. 
     border-radius: 3px;
     box-shadow: 0 0 25px 1px rgba(0,0,0,.5);
     height: 350px;
+    animation: slideInDown;
+    animation-duration: 1s;
 }
 
 

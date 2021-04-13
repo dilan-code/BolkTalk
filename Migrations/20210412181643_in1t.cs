@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookTalk.Migrations
 {
-    public partial class in1 : Migration
+    public partial class in1t : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -132,6 +132,33 @@ namespace BookTalk.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Finnished = table.Column<bool>(type: "bit", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalPrice = table.Column<double>(type: "float", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Provenance = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserClaims",
                 columns: table => new
                 {
@@ -216,17 +243,43 @@ namespace BookTalk.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UserOrders",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    OrderId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    BookId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserOrders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserOrders_Books_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Books",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserOrders_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "CoverUrl", "Created", "Description", "IsFeatured", "IsVisible", "Price", "Sale", "Stock", "Title" },
                 values: new object[,]
                 {
-                    { "baacca0d-bcef-4907-8fb3-675c92b36dd5", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/7868/9781786892737.jpg", new DateTime(2021, 4, 1, 13, 55, 56, 696, DateTimeKind.Local).AddTicks(5958), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", false, false, 100.0, 0, 10, "The Midnight Library" },
-                    { "8b44d1ec-5e01-4b8a-a42f-5cffa7ea4bae", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/5266/9781526612168.jpg", new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1424), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", false, false, 100.0, 0, 10, "Such a Fun Age : 'The book of the year' Independent" },
-                    { "0dc4a418-4f9f-4aae-9c3b-cc0f5771fa03", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/8460/9781846045127.jpg", new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1490), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", true, true, 50.0, 50, 10, "The Choice : A true story of hope" },
-                    { "6851aeb5-4be1-4cf5-88da-7bd8ca70f5b5", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/2419/9780241982976.jpg", new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1530), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", true, true, 120.0, 10, 10, "Becoming : The Sunday Times Number One Bestseller" },
-                    { "95e4905f-fa31-4900-a331-bed2213f5892", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/8479/9781847941831.jpg", new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1618), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", false, true, 175.0, 20, 10, "Atomic Habits : the life-changing million-copy #1 bestseller" },
-                    { "0ad20400-a46d-4042-880d-d8cb5cca08e3", "https://image.bokus.com/images/9781544512266_200x_cant-hurt-me_e-bok", new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1664), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", false, true, 245.0, 20, 10, "Can't Hurt Me" }
+                    { "cafeaa59-2435-44d2-9721-a3960bbabe3f", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/7868/9781786892737.jpg", new DateTime(2021, 4, 12, 20, 16, 42, 480, DateTimeKind.Local).AddTicks(937), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", false, false, 100.0, 0, 10, "The Midnight Library" },
+                    { "064676db-e8fc-4c6f-be92-972138a441c5", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/5266/9781526612168.jpg", new DateTime(2021, 4, 12, 20, 16, 42, 480, DateTimeKind.Local).AddTicks(7440), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", false, false, 100.0, 0, 10, "Such a Fun Age : 'The book of the year' Independent" },
+                    { "ecb5db63-9b74-4a14-b459-5099c24fd684", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/8460/9781846045127.jpg", new DateTime(2021, 4, 12, 20, 16, 42, 480, DateTimeKind.Local).AddTicks(7503), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", true, true, 50.0, 50, 10, "The Choice : A true story of hope" },
+                    { "60d0a92e-f1eb-44de-b76c-aad01ca197b0", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/2419/9780241982976.jpg", new DateTime(2021, 4, 12, 20, 16, 42, 480, DateTimeKind.Local).AddTicks(7537), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", true, true, 120.0, 10, 10, "Becoming : The Sunday Times Number One Bestseller" },
+                    { "f725b0bf-4dda-4b7d-9068-3799c95dcea6", "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/8479/9781847941831.jpg", new DateTime(2021, 4, 12, 20, 16, 42, 480, DateTimeKind.Local).AddTicks(7585), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", false, true, 175.0, 20, 10, "Atomic Habits : the life-changing million-copy #1 bestseller" },
+                    { "89db5c1f-e6c7-4b6a-8720-7c60718a3918", "https://image.bokus.com/images/9781544512266_200x_cant-hurt-me_e-bok", new DateTime(2021, 4, 12, 20, 16, 42, 480, DateTimeKind.Local).AddTicks(7626), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", false, true, 245.0, 20, 10, "Can't Hurt Me" }
                 });
 
             migrationBuilder.InsertData(
@@ -234,9 +287,9 @@ namespace BookTalk.Migrations
                 columns: new[] { "Id", "Body", "Created", "ImageUrl", "IsInMenu", "IsPublished", "MenuOrder", "Title" },
                 values: new object[,]
                 {
-                    { "1a6da021-a05c-4c12-a9f3-12d69a059673", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", new DateTime(2021, 4, 1, 13, 55, 56, 692, DateTimeKind.Local).AddTicks(5887), "", true, true, 100, "About" },
-                    { "46007b4f-61e8-4d4d-b9a2-dade1180e34e", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", new DateTime(2021, 4, 1, 13, 55, 56, 696, DateTimeKind.Local).AddTicks(3993), "", false, true, 100, "FAQ" },
-                    { "abd3edaa-435a-4ba4-af43-4510e13b2dc3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", new DateTime(2021, 4, 1, 13, 55, 56, 696, DateTimeKind.Local).AddTicks(4122), "https://puppypetdog.com/wp-content/uploads/2019/11/contact-header-image.jpg", true, true, 100, "Contact" }
+                    { "4ea238ea-7c9b-4328-a376-bbd95e0da527", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", new DateTime(2021, 4, 12, 20, 16, 42, 475, DateTimeKind.Local).AddTicks(7859), "", true, true, 100, "About" },
+                    { "5380b3ae-3c69-41fa-80df-1f18a19f5dbf", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", new DateTime(2021, 4, 12, 20, 16, 42, 479, DateTimeKind.Local).AddTicks(8875), "", false, true, 100, "FAQ" },
+                    { "32a3ff6c-e582-4a06-ab4b-55b1ede4bf9e", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.", new DateTime(2021, 4, 12, 20, 16, 42, 479, DateTimeKind.Local).AddTicks(8972), "https://puppypetdog.com/wp-content/uploads/2019/11/contact-header-image.jpg", true, true, 100, "Contact" }
                 });
 
             migrationBuilder.InsertData(
@@ -244,14 +297,19 @@ namespace BookTalk.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "d725fe34-ff7a-43b8-b876-199aaa03e511", "0280728a-4c8f-40db-9416-5725bdb06e10", "Admin", "ADMIN" },
-                    { "cdc1f9d3-994b-47c4-a741-35fb417a1c55", "47c43178-daff-4732-86b8-53e8fa7ed5d9", "Customer", "CUSTOMER" }
+                    { "8d51f74b-d869-429c-b6a2-f7d68dd72933", "1348ed1d-67ba-40e8-bcfa-ed02d699da9a", "Admin", "ADMIN" },
+                    { "b9cee6ee-0c47-4f75-8326-7d8ae18b6a3f", "acc7ccf8-d2d1-491c-8f0c-b8e6499ec7fa", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Authors_BookId",
                 table: "Authors",
                 column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -288,6 +346,16 @@ namespace BookTalk.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserOrders_BookId",
+                table: "UserOrders",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserOrders_OrderId",
+                table: "UserOrders",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
                 column: "RoleId");
@@ -311,6 +379,9 @@ namespace BookTalk.Migrations
                 name: "UserLogins");
 
             migrationBuilder.DropTable(
+                name: "UserOrders");
+
+            migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
@@ -318,6 +389,9 @@ namespace BookTalk.Migrations
 
             migrationBuilder.DropTable(
                 name: "Books");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Roles");

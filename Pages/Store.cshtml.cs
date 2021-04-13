@@ -16,10 +16,12 @@ namespace BookTalk.Pages
         public List<Book> Books { get; private set; }
 
         private Context _context;
+        private CustomerCartService _cartService;
 
-        public StoreModel(Context context)
+        public StoreModel(Context context, CustomerCartService cartService)
         {
             _context = context;
+            _cartService = cartService;
             Books = _context.Books.ToList();
         }
 
@@ -30,7 +32,7 @@ namespace BookTalk.Pages
 
         public void OnPostAddToCart(string bookId)
         {
-            CustomerCart.AddToCart(bookId);
+            _cartService.AddToCart(bookId);
         }
 
 

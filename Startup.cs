@@ -28,11 +28,12 @@ namespace BookTalk
 
             services.AddScoped<NavigationService>();
             services.AddScoped<EmailService>();
+            services.AddScoped<CustomerCartService>();
 
             services.ConfigureApplicationCookie(option => {
 
                 option.Cookie.Name = "BookTalkCookie";
-                option.LoginPath = "/account/signin";
+                option.LoginPath = "/account/login";
                 option.LogoutPath = "/account/logout";
                 option.AccessDeniedPath = "/account/login/accessdenied";
                 option.SlidingExpiration = true;

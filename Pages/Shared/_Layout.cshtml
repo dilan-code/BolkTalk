@@ -1,5 +1,6 @@
 ﻿@inject NavigationService navService;
 @inject Context context;
+@inject CustomerCartService customerCart; 
 
 
 <!DOCTYPE html>
@@ -117,105 +118,16 @@
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     <h5>
                                         <i class="fas fa-shopping-cart"></i>
-                                        <span class="badge badge-secondary">@CustomerCart.GetCartCount()</span>
+                                        <span class="badge badge-secondary">@customerCart.GetCartCount()</span>
                                     </h5>
                                 </a>
 
-                                <div class="dropdown-menu cartList">
 
-                                    @if (CustomerCart.GetCartCount() != 0)
-                                    {
-                                        <ul class="list-group ">
+                                <partial name="_Cart" />
 
 
 
-                                            @{
-                                                double totalPrice = 0.0;
-
-                                            }
-
-
-                                            @foreach (var productId in CustomerCart.GetCart())
-                                            {
-                                                BookTalk.Data.Book book = new Data.Book();
-
-                                                book = context.Books.Where(x => x.Id.Equals(productId)).FirstOrDefault();
-
-                                                if (productId is not null)
-                                                {
-                                                    totalPrice += book.Price;
-
-                                                    <div class="card" id="@book.Id">
-
-                                                        <span class="card-body">
-
-                                                            <div class="row ">
-
-                                                                <div class="col-2">
-
-                                                                    <img src="@book.CoverUrl" class="img-fluid cartImage" alt="Cover" />
-
-                                                                </div>
-
-                                                                <div class="col-7">
-
-                                                                    <span class="cartTitle">@book.Title.Substring(0, (book.Title.Length < 30 ? book.Title.Length : 30))...</span>
-
-                                                                </div>
-
-                                                                <div class="col-2">
-
-                                                                    <span class="badge badge-warning badge-pill">
-
-                                                                        @book.Price SEK
-
-                                                                    </span>
-
-                                                                </div>
-
-                                                                <div class="col-1">
-
-
-                                                                    <a id="button_@book.Id" onclick="removeFromCart(this)">
-
-                                                                        <i class="fas fa-trash-alt"></i>
-
-                                                                    </a>
-
-                                                                </div>
-
-                                                            </div>
-
-                                                    </div>
-
-                                                    <br />
-
-                                                }
-
-                                            }
-
-                                            @if (totalPrice != 0)
-                                            {
-
-                                                <div class="totalPriceLabel">
-                                                    <span>Total price: @totalPrice SEK</span>
-                                                </div>
-                                            }
-
-                                        </ul>
-                                    }
-                                    else
-                                    {
-
-                                        <div class="card">
-                                            <div class="card-body">
-                                                You have no products in your cart. Go buy something!
-                                            </div>
-                                        </div>
-
-                                    }
-
-                                </div>
+                                
                             </li>
                         </ul>
 

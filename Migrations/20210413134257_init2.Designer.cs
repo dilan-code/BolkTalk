@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookTalk.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210401115557_in1")]
-    partial class in1
+    [Migration("20210413134257_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,9 +86,9 @@ namespace BookTalk.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "baacca0d-bcef-4907-8fb3-675c92b36dd5",
+                            Id = "c395fe99-0f33-46b0-b348-c5c1d8d2207c",
                             CoverUrl = "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/7868/9781786892737.jpg",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 696, DateTimeKind.Local).AddTicks(5958),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 711, DateTimeKind.Local).AddTicks(3434),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
                             IsFeatured = false,
                             IsVisible = false,
@@ -99,9 +99,9 @@ namespace BookTalk.Migrations
                         },
                         new
                         {
-                            Id = "8b44d1ec-5e01-4b8a-a42f-5cffa7ea4bae",
+                            Id = "1aafc542-7ede-492c-894f-e432521a01d6",
                             CoverUrl = "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/5266/9781526612168.jpg",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1424),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 712, DateTimeKind.Local).AddTicks(3030),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
                             IsFeatured = false,
                             IsVisible = false,
@@ -112,9 +112,9 @@ namespace BookTalk.Migrations
                         },
                         new
                         {
-                            Id = "0dc4a418-4f9f-4aae-9c3b-cc0f5771fa03",
+                            Id = "38e2cf88-7049-40b9-beeb-5c7b99acab70",
                             CoverUrl = "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/8460/9781846045127.jpg",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1490),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 712, DateTimeKind.Local).AddTicks(3165),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
                             IsFeatured = true,
                             IsVisible = true,
@@ -125,9 +125,9 @@ namespace BookTalk.Migrations
                         },
                         new
                         {
-                            Id = "6851aeb5-4be1-4cf5-88da-7bd8ca70f5b5",
+                            Id = "2e03b767-637b-4d60-97ea-e061f5ae6a2e",
                             CoverUrl = "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/2419/9780241982976.jpg",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1530),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 712, DateTimeKind.Local).AddTicks(3237),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
                             IsFeatured = true,
                             IsVisible = true,
@@ -138,9 +138,9 @@ namespace BookTalk.Migrations
                         },
                         new
                         {
-                            Id = "95e4905f-fa31-4900-a331-bed2213f5892",
+                            Id = "4c603798-5f85-40aa-be7f-7d12f04e6630",
                             CoverUrl = "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/8479/9781847941831.jpg",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1618),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 712, DateTimeKind.Local).AddTicks(3291),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
                             IsFeatured = false,
                             IsVisible = true,
@@ -151,9 +151,9 @@ namespace BookTalk.Migrations
                         },
                         new
                         {
-                            Id = "0ad20400-a46d-4042-880d-d8cb5cca08e3",
+                            Id = "0edcc82a-0ff3-4934-9d1d-14ecaf3184b2",
                             CoverUrl = "https://image.bokus.com/images/9781544512266_200x_cant-hurt-me_e-bok",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 697, DateTimeKind.Local).AddTicks(1664),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 712, DateTimeKind.Local).AddTicks(3349),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
                             IsFeatured = false,
                             IsVisible = true,
@@ -197,9 +197,9 @@ namespace BookTalk.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1a6da021-a05c-4c12-a9f3-12d69a059673",
+                            Id = "efcbf753-6be8-4928-9438-56cccf6a7b3d",
                             Body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 692, DateTimeKind.Local).AddTicks(5887),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 705, DateTimeKind.Local).AddTicks(333),
                             ImageUrl = "",
                             IsInMenu = true,
                             IsPublished = true,
@@ -208,9 +208,9 @@ namespace BookTalk.Migrations
                         },
                         new
                         {
-                            Id = "46007b4f-61e8-4d4d-b9a2-dade1180e34e",
+                            Id = "df3b74c5-9ffc-4612-acbb-bc6133d9007f",
                             Body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 696, DateTimeKind.Local).AddTicks(3993),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 711, DateTimeKind.Local).AddTicks(416),
                             ImageUrl = "",
                             IsInMenu = false,
                             IsPublished = true,
@@ -219,15 +219,63 @@ namespace BookTalk.Migrations
                         },
                         new
                         {
-                            Id = "abd3edaa-435a-4ba4-af43-4510e13b2dc3",
+                            Id = "4f2bfb1f-c5c4-4529-aa21-d5edd67cc3dd",
                             Body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus erat non congue efficitur. Nulla sollicitudin sit amet dolor sed vestibulum. Aenean laoreet, nibh ac hendrerit egestas, metus urna semper orci, nec aliquet urna tellus at nibh. Vivamus vel sapien eget libero cursus hendrerit sed at quam. Etiam nec turpis urna. Donec at lacus in nibh cursus ullamcorper eget vitae lorem. In congue consectetur purus vitae porta. Donec volutpat rhoncus nisl, et placerat tellus fringilla et.",
-                            Created = new DateTime(2021, 4, 1, 13, 55, 56, 696, DateTimeKind.Local).AddTicks(4122),
+                            Created = new DateTime(2021, 4, 13, 15, 42, 55, 711, DateTimeKind.Local).AddTicks(573),
                             ImageUrl = "https://puppypetdog.com/wp-content/uploads/2019/11/contact-header-image.jpg",
                             IsInMenu = true,
                             IsPublished = true,
                             MenuOrder = 100,
                             Title = "Contact"
                         });
+                });
+
+            modelBuilder.Entity("BookTalk.Data.Order", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Finnished")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Provenance")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("BookTalk.Data.User", b =>
@@ -307,6 +355,32 @@ namespace BookTalk.Migrations
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("BookTalk.Data.UserOrder", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BookId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("UserOrders");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -336,15 +410,15 @@ namespace BookTalk.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d725fe34-ff7a-43b8-b876-199aaa03e511",
-                            ConcurrencyStamp = "0280728a-4c8f-40db-9416-5725bdb06e10",
+                            Id = "0a880cc1-659a-4635-be2a-eef833e2096a",
+                            ConcurrencyStamp = "cc46baf9-8b1d-426a-a45c-9f2ec6a33f9b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "cdc1f9d3-994b-47c4-a741-35fb417a1c55",
-                            ConcurrencyStamp = "47c43178-daff-4732-86b8-53e8fa7ed5d9",
+                            Id = "46e8fe91-21d2-49bf-8607-bebd2c1d810a",
+                            ConcurrencyStamp = "8d36120f-5414-4af8-b3c0-445c20cf379a",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -467,6 +541,30 @@ namespace BookTalk.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("BookTalk.Data.Order", b =>
+                {
+                    b.HasOne("BookTalk.Data.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BookTalk.Data.UserOrder", b =>
+                {
+                    b.HasOne("BookTalk.Data.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("BookTalk.Data.Order", "Order")
+                        .WithMany("UserOrder")
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -521,6 +619,11 @@ namespace BookTalk.Migrations
             modelBuilder.Entity("BookTalk.Data.Book", b =>
                 {
                     b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("BookTalk.Data.Order", b =>
+                {
+                    b.Navigation("UserOrder");
                 });
 #pragma warning restore 612, 618
         }
