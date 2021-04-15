@@ -26,7 +26,7 @@ namespace BookTalk.Data
         public string UserId { get; set; }
         public User User { get; set; }
 
-        [NotMapped]
+        
         public List<UserOrder> UserOrder { get; set; }
 
         public Order()

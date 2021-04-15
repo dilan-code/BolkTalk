@@ -1,6 +1,10 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/* Color Theme Swatches in Hex */
+
+
+
 
 :root {
     --brightColor: #e5e5e5;
@@ -10,19 +14,40 @@ for details on configuring this project to bundle and minify static web assets. 
     --formBgColor: rgba(219, 217, 208,1);
     --greyColor: #BFBFBF;
     --formBackground: #FFF;
+
+    --blueColor1: #131626;
+    --blueColor2: #4C6873;
+    --blueColor3: #89C2D9;
+    --blueColor4: #B3E0F2;
+    --blueColor5: #D8F0F2;
 }
+
+
+header {
+    background-color: var(--blueColor1);
+}
+
 html {
     position: relative;
     min-height: 100%;
     overflow-y: scroll;
 }
 
+.card {
+    z-index: -100 !important;
+}
+
+.dropdown-cart-icon {
+    color: var(--blueColor4) !important;
+}
+.carousel {
+    z-index: -100 !important;
+}
 
 body {
     font-family: 'Roboto', sans-serif !important;
     background-color: var(--lightColor);
-    color: var(--blueColor) !important;
-   
+    color: var(--darkColor) !important;
 }
 
 nav {
@@ -43,7 +68,7 @@ nav a:hover {
 
 nav a {
     transition: all 200ms ease-in-out;
-    color: var(--) !important;
+    color: var(--blueColor4) !important;
 }
 
 footer {
@@ -105,9 +130,6 @@ footer a {
     margin: 0 auto;
 }
 
-.dropdown-menu {
-    z-index: 99999999 !important;
-}
 
 
 .large-icon {
@@ -116,10 +138,13 @@ footer a {
 
 
 
-.CheckoutConsole {
 
-    text-align: right;
-    float: right;
+
+.dropdown-menu {
+   
+    min-width: 40rem;
+    z-index: 9999 !important;
+    position: absolute !important;
 
 }
 
@@ -218,13 +243,6 @@ body {
 
 }
 
-.dropdown-menu {
-    width: 300px;
-    padding: 5px;
-    background-color: rgba(150, 150, 150, 1);
-    box-shadow: 0 0 20px 0 rgba(1,1,1,0.3);
-    margin-left: -150px;
-}
 
 .card-body {
     text-align: center;
@@ -260,7 +278,7 @@ body {
 }
 
 .img-ontop {
-    z-index: 99999 !important;
+    z-index: 999 !important;
     position: static !important;
     margin: 50px;
     border-radius: 5px;
@@ -276,7 +294,7 @@ body {
 .layerTwo {
     background-size: cover;
     background-position: center center;
-    z-index: -100;
+    z-index: -1;
     filter: brightness(200%) contrast(50%) blur(50px) saturate(100%) ;
     position: relative;
     width: 100% !important;
@@ -333,13 +351,7 @@ body {
     font-size: 1.2rem;
 }
 
-.cartList {
-    width: 500px;
-    height: 700px;
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
-}
+
 
 .cartTitle {
     font-size: 1rem;
@@ -366,6 +378,74 @@ body {
 
 .redLabel th {
     background-color: red !important;
+}
+
+.logoIcon {
+    font-size: 4rem;
+    color: var(--blueColor5);
+}
+
+/* Color Theme Swatches in Hex */
+.blue-1-hex {
+    color: #47A4BF;
+}
+
+.blue-2-hex {
+    color: #2F6D7F;
+}
+
+.blue-3-hex {
+    color: #5FDBFF;
+}
+
+.blue-4-hex {
+    color: #183740;
+}
+
+.blue-5-hex {
+    color: #55C5E5;
+}
+
+/* Color Theme Swatches in RGBA */
+.blue-1 {
+    color: rgba(70, 164, 191, 1);
+}
+
+.blue-2 {
+    color: rgba(47, 109, 126, 1);
+}
+
+.blue-3 {
+    color: rgba(94, 219, 255, 1);
+}
+
+.blue-4 {
+    color: rgba(23, 55, 63, 1);
+}
+
+.blue-5 {
+    color: rgba(84, 196, 228, 1);
+}
+
+/* Color Theme Swatches in HSLA */
+.blue-1-hsla {
+    color: hsla(193, 48, 51, 1);
+}
+
+.blue-2-hsla {
+    color: hsla(193, 45, 34, 1);
+}
+
+.blue-3-hsla {
+    color: hsla(193, 100, 68, 1);
+}
+
+.blue-4-hsla {
+    color: hsla(193, 45, 17, 1);
+}
+
+.blue-5-hsla {
+    color: hsla(193, 73, 61, 1);
 }
 
 

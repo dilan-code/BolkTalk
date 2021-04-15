@@ -11,6 +11,7 @@ namespace BookTalk.Models
         public int Quantity { get; set; }
         public string BookId { get; set; }
         public Book Book { get; set; }
+        public DateTime Added { get; set; }
 
         public CheckoutModel()
         {
@@ -23,6 +24,7 @@ namespace BookTalk.Models
             Quantity = 0;
             BookId = book.Id;
             Book = book;
+            Added = DateTime.Now;
         }
     }
 }

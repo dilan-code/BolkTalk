@@ -1,6 +1,8 @@
 ﻿@page
 @model BookTalk.Pages.ProductsModel
 
+@inject CurrencyService currencyService;
+
 <div class="row">
 
 
@@ -16,8 +18,9 @@
                 <div class="card-body">
                     <h5 class="card-title">@book.Title</h5>
                     <p class="card-text">@book.Description.Substring(0, 150)...</p>
-                    <span>@book.Price</span>
-
+                    <span>@book.Price SEK</span>
+                    <br />
+                    
                     <a href="#" class="btn btn-primary">Show More</a>
                 </div>
             </div>

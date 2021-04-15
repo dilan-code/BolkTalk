@@ -31,7 +31,7 @@ namespace BookTalk.Pages.Account
         }
 
 
-        public async Task<IActionResult> OnPostSignIn(string user, string password, bool rememberMe)
+        public async Task<IActionResult> OnPostSignIn(string user, string password, bool rememberMe = false)
         {
 
             User usr = user.Contains("@") ? await _userManager.FindByEmailAsync(user) : await _userManager.FindByNameAsync(user);

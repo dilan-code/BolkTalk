@@ -29,6 +29,7 @@ namespace BookTalk
             services.AddScoped<NavigationService>();
             services.AddScoped<EmailService>();
             services.AddScoped<CustomerCartService>();
+            services.AddScoped<CurrencyService>();
 
             services.ConfigureApplicationCookie(option => {
 

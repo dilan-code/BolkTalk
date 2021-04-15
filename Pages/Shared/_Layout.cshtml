@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/all.css" rel="stylesheet">
 
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
 
     @await RenderSectionAsync("Header", required: false)
 
@@ -30,10 +32,10 @@
     
     }
 
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header class="animate__animated animate__bounce">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">BookTalk</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index"><i class="fas logoIcon fa-book"></i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,21 +45,16 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Store">Store</a>
+                            <a class="nav-link nav-color" asp-area="" asp-page="/Store">Store</a>
                         </li>
 
                         @foreach (var nav in navService.GetMenu())
                         {
                             <li class="nav-item">
-                                <a href="/content/@nav.Title" class="nav-link text-dark">@nav.Title</a>
+                                <a href="/content/@nav.Title" class="nav-link nav-color">@nav.Title</a>
                             </li>
                         }
 
-
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/BookManager">BookManager</a>
-                        </li>
                     </ul>
 
                     @if(User.Identity.IsAuthenticated)
@@ -72,64 +69,51 @@
                         </ul>
                     }
 
-                        <ul class="nav justify-content-end">
+                <ul class="nav justify-content-end">
 
 
 
 
-                            <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
 
-                                <a class="nav-link dropdown-toggle btn-account" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <h5>
-                                        <i class="fas fa-user-circle"></i>
-                                    </h5>
-                                </a>
+                        <a class="nav-link dropdown-toggle btn-account" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <h5>
+                                <i class="fas fa-user-circle"></i>
+                            </h5>
+                        </a>
 
-                                <div class="dropdown-menu menu-account">
+                        <div class="dropdown-menu menu-account">
 
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
+                            @if (User.Identity.IsAuthenticated)
+                            {
 
-                                        @if (User.IsInRole("Admin"))
-                                        {
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a class="dropdown-item" href="/admin/store">Store Manager</a>
+                                    <a class="dropdown-item" href="/admin/content">Content Manager</a>
 
-                                            <a class="dropdown-item" href="/admin/store">Store Manager</a>
-                                            <a class="dropdown-item" href="/admin/content">Content Manager</a>
+                                }
 
+                                <a class="dropdown-item" href="/account/register">Settings</a>
+                                <a class="dropdown-item" href="/account/logout">Sign Out</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item" href="/account/register">Register</a>
+                                <a class="dropdown-item" href="/account/login">Sign In</a>
+                            }
 
-                                        }
+                        </div>
 
-                                        <a class="dropdown-item" href="/account/register">Settings</a>
-                                        <a class="dropdown-item" href="/account/logout">Sign Out</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="dropdown-item" href="/account/register">Register</a>
-                                        <a class="dropdown-item" href="/account/login">Sign In</a>
-                                    }
-
-                                </div>
-
-                            </li>
-
-
-                            <li class="nav-item dropdown">
-
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <h5>
-                                        <i class="fas fa-shopping-cart"></i>
-                                        <span class="badge badge-secondary">@customerCart.GetCartCount()</span>
-                                    </h5>
-                                </a>
-
-
-                                <partial name="_Cart" />
+                    </li>
 
 
 
-                                
-                            </li>
-                        </ul>
+                    <partial name="_Cart" />
+
+
+                    
+                </ul>
 
 
 

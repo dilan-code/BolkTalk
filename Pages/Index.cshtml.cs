@@ -24,7 +24,7 @@ namespace BookTalk.Pages
             bookList = _context.Books.Where(x => x.IsFeatured.Equals(true) || x.Sale > 0).ToList();
         }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
 
             _context.Books.ToList().ForEach(x => {
@@ -33,7 +33,6 @@ namespace BookTalk.Pages
 
             });
 
-            return LocalRedirect("/checkout");
         }
 
 

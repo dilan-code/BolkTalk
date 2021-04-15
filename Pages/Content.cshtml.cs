@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookTalk.Data;
 using BookTalk.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -72,7 +73,7 @@ namespace BookTalk.Pages
         }
 
 
-        public void OnPostSendEmail()
+        public void OnPostSendEmail(IFormFile file)
         {
             bool didSend =_email.SendContactEmail(emailModel);
 
