@@ -30,11 +30,12 @@ namespace BookTalk.Pages
 
         }
 
-        public void OnPostAddToCart(string bookId)
+        public IActionResult OnPostAddToCart(string bookId)
         {
             _cartService.AddToCart(bookId);
-        }
 
+            return LocalRedirect("/store");
+        }
 
     }
 }

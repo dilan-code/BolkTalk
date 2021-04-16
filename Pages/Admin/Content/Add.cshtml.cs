@@ -27,7 +27,7 @@ namespace BookTalk.Pages.Admin.Content
         {
             try
             {
-                Data.Content content = new Data.Content(title, body, isinmenu, ispublished, imgurl, menuorder);
+                Data.Content content = new Data.Content(title, body = body, isinmenu, ispublished, imgurl, menuorder);
 
                 _context.Content.Add(content);
 
