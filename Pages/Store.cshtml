@@ -2,6 +2,8 @@
 @model BookTalk.Pages.StoreModel
 @inject CurrencyService currencyService;
 
+
+  
 <div class="row">
 
     @{
@@ -30,14 +32,13 @@
 
 
                             <form asp-page-handler="AddToCart" method="post">
+                              
                                 <button class="btn btn-primary" type="submit"><i class="fas fa-cart-plus"></i></button>
 
                                 <a href="/book/@book.Id" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
 
                                 <input type="hidden" name="bookId" value="@book.Id.ToString()" />
                             </form>
-
-
 
 
 
